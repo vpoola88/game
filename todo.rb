@@ -1,4 +1,5 @@
 require_relative 'config/application'
+require_relative 'dragonfly_ascii'
 
 # puts "Put your application code in #{File.expand_path(__FILE__)}"
 
@@ -92,14 +93,17 @@ class GameController
 
 	def dead_player(loser)
 		winner = @players.first
-		puts "#{loser.nickname} DEAD. #{winner.nickname} wins the #{loser.current_weapon.name}"
+		puts "#{loser.nickname} DEAD. #{winner.nickname} wins the #{loser.current_weapon.name}."
+		weapon_name = loser.current_weapon.name
 		loser.current_weapon.update_attributes(player_id: winner.id)
+		weapon_name = "dragon"
+		puts WeaponsView.send(weapon_name)
 		exit
 	end
 
 	def print_weapons(weapons)
 		weapons.each do |weapon|
-			puts "Weapon #{weapon.id}. #{weapon.name}"
+			puts "Weapon #{weapon.id}: #{weapon.name}"
 		end
 	end
 
