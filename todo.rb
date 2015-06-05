@@ -92,7 +92,7 @@ class GameController
 
 	def dead_player(loser)
 		winner = @players.first
-		puts "#{loser.nickname} DEAD"
+		puts "#{loser.nickname} DEAD. #{winner.nickname} wins the #{loser.current_weapon.name}"
 		loser.current_weapon.update_attributes(player_id: winner.id)
 		exit
 	end
